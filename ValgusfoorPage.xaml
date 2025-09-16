@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_1projekt.ValgusfoorPage"
+             Title="Valgusfoor">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+
+        <!-- Pealkiri -->
+        <Label x:Name="TitleLabel"
+               Text="Lülita foor sisse"
+               FontSize="24"
+               HorizontalOptions="Center" />
+
+        <!-- Valgusfoori tuled (ainult üks on korraga sisse) -->
+        <Frame x:Name="RedLight"
+               WidthRequest="100" HeightRequest="100"
+               CornerRadius="50"
+               BackgroundColor="Gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnRedTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+        <Frame x:Name="YellowLight"
+               WidthRequest="100" HeightRequest="100"
+               CornerRadius="50"
+               BackgroundColor="Gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnYellowTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+        <Frame x:Name="GreenLight"
+               WidthRequest="100" HeightRequest="100"
+               CornerRadius="50"
+               BackgroundColor="Gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnGreenTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+        <!-- Nupud -->
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <Button Text="Sisse" Clicked="OnTurnOnClicked"/>
+            <Button Text="Välja" Clicked="OnTurnOffClicked"/>
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>
