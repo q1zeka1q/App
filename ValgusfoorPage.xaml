@@ -4,47 +4,55 @@
              x:Class="_1projekt.ValgusfoorPage"
              Title="Valgusfoor">
 
-    <VerticalStackLayout Padding="20" Spacing="20">
+    <Grid>
+        <!-- Фоновая картинка -->
+        <Image Source="cartoon_bg.png"
+            Aspect="AspectFill"
+            InputTransparent="True"
+            IsEnabled="False" />
 
-        <!-- Pealkiri -->
-        <Label x:Name="TitleLabel"
-               Text="Lülita foor sisse"
-               FontSize="24"
-               HorizontalOptions="Center" />
+            <VerticalStackLayout Padding="20" Spacing="20">
 
-        <!-- Valgusfoori tuled (ainult üks on korraga sisse) -->
-        <Frame x:Name="RedLight"
-               WidthRequest="100" HeightRequest="100"
-               CornerRadius="50"
-               BackgroundColor="Gray">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnRedTapped"/>
-            </Frame.GestureRecognizers>
-        </Frame>
+                <!-- Pealkiri -->
+                <Label x:Name="TitleLabel"
+                   Text="Lülita foor sisse"
+                   FontSize="24"
+                   HorizontalOptions="Center" />
 
-        <Frame x:Name="YellowLight"
-               WidthRequest="100" HeightRequest="100"
-               CornerRadius="50"
-               BackgroundColor="Gray">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnYellowTapped"/>
-            </Frame.GestureRecognizers>
-        </Frame>
+                <!-- Valgusfoori tuled (ainult üks on korraga sisse) -->
+                <Frame x:Name="RedLight"
+                   WidthRequest="100" HeightRequest="100"
+                   CornerRadius="50"
+                   BackgroundColor="Gray">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRedTapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
 
-        <Frame x:Name="GreenLight"
-               WidthRequest="100" HeightRequest="100"
-               CornerRadius="50"
-               BackgroundColor="Gray">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnGreenTapped"/>
-            </Frame.GestureRecognizers>
-        </Frame>
+                <Frame x:Name="YellowLight"
+                   WidthRequest="100" HeightRequest="100"
+                   CornerRadius="50"
+                   BackgroundColor="Gray">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnYellowTapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
 
-        <!-- Nupud -->
-        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-            <Button Text="Sisse" Clicked="OnTurnOnClicked"/>
-            <Button Text="Välja" Clicked="OnTurnOffClicked"/>
-        </HorizontalStackLayout>
+                <Frame x:Name="GreenLight"
+                   WidthRequest="100" HeightRequest="100"
+                   CornerRadius="50"
+                   BackgroundColor="Gray">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnGreenTapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
 
-    </VerticalStackLayout>
+                <!-- Nupud -->
+                <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                    <Button Text="Sisse" Clicked="OnTurnOnClicked"/>
+                    <Button Text="Välja" Clicked="OnTurnOffClicked"/>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+    </Grid>
 </ContentPage>

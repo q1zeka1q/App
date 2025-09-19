@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_1projekt.Lumememm"  
+                Title="☃ Lumememm">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="16" RowSpacing="12">
+
+        <!-- Панель управления -->
+        <VerticalStackLayout Spacing="10" Grid.Row="0">
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Label Text="Tegevus:" VerticalTextAlignment="Center"/>
+                <Picker x:Name="ActionPicker" WidthRequest="220">
+                    <Picker.Items>
+                        <x:String>Peida</x:String>
+                        <x:String>Näita</x:String>
+                        <x:String>Muuda värvi</x:String>
+                        <x:String>Sulata</x:String>
+                        <x:String>Tantsi</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Button Text="Tee" Clicked="OnDoActionClicked"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Label Text="Läbipaistvus:" VerticalTextAlignment="Center"/>
+                <Slider x:Name="OpacitySlider" Minimum="0" Maximum="1" Value="1"
+                        WidthRequest="200" ValueChanged="OnOpacityChanged"/>
+                <Label x:Name="OpacityValueLabel" Text="1.00" VerticalTextAlignment="Center"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Label Text="Kiirus (ms):" VerticalTextAlignment="Center"/>
+                <Stepper x:Name="SpeedStepper" Minimum="100" Maximum="2000" Increment="100" Value="600"
+                         ValueChanged="OnSpeedChanged"/>
+                <Label x:Name="SpeedLabel" Text="600 ms" VerticalTextAlignment="Center"/>
+            </HorizontalStackLayout>
+
+            <Label x:Name="InfoLabel" Text="Vali tegevus ja vajuta 'Tee'." TextColor="#444" FontAttributes="Italic"/>
+        </VerticalStackLayout>
+
+        <!-- Снеговик -->
+        <AbsoluteLayout x:Name="Canvas" Grid.Row="1" BackgroundColor="#EAF6FF">
+            <!-- Тело -->
+            <Frame x:Name="Body" WidthRequest="180" HeightRequest="180"
+                   BackgroundColor="White" BorderColor="#D0D0D0"
+                   CornerRadius="90" HasShadow="True"
+                   AbsoluteLayout.LayoutBounds="0.5,0.7,180,180"
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+            <!-- Голова -->
+            <Frame x:Name="Head" WidthRequest="120" HeightRequest="120"
+                   BackgroundColor="White" BorderColor="#D0D0D0"
+                   CornerRadius="60" HasShadow="True"
+                   AbsoluteLayout.LayoutBounds="0.5,0.48,120,120"
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+            <!-- Ведро -->
+            <Frame x:Name="Bucket" WidthRequest="100" HeightRequest="40"
+                   BackgroundColor="#2E63B6" CornerRadius="8" HasShadow="True"
+                   Rotation="-15"
+                   AbsoluteLayout.LayoutBounds="0.47,0.39,100,40"
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+        </AbsoluteLayout>
+
+       <!-- <Label Grid.Row="2" Text="💡 Slider меняет прозрачность, Stepper — скорость 'Sulata' и 'Tantsi'."
+               FontSize="12" TextColor="#666" />-->
+    </Grid>
+</ContentPage>

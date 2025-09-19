@@ -13,7 +13,8 @@ public partial class StartPage : ContentPage
         new FigurePage(),
         new TimerPage(),
         new ValgusfoorPage(),
-        new DateTimePage()
+        new DateTimePage(),
+        new Lumememm()
     };
 
     public List<string> tekstid = new List<string>()
@@ -22,7 +23,8 @@ public partial class StartPage : ContentPage
         "Tee lahti Figure leht",
         "Käivita timer page",
         "Käivita valgusfoor page",
-        "Ava DateTime leht"
+        "Ava DateTime leht",
+        "Ava lumememm"
     };
 
     ScrollView sv;

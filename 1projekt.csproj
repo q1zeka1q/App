@@ -89,6 +89,9 @@
 	  <MauiXaml Update="ValgusfoorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+		  <MauiXaml Update="Lumememm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
