@@ -62,12 +62,32 @@ public partial class DateTimePage : ContentPage
             BackgroundColor = Colors.White,
             TextColor = Colors.Black,
             FontFamily = "Lovin Kites 400",
-            ItemsSource = new List<string> { "üks", "kaks", "kolm", "neli", "viis" }
+            ItemsSource = new List<string> { "Teade", "Jah/Ei teade", "Valik", "vaba vastus"}
         };
         picker.SelectedIndexChanged += (s, e) =>
         {
-            if (picker.SelectedIndex != -1 && picker.SelectedItem is string valik)
-                mis_on_valitud.Text = $"Valisite: {valik}";
+            if (picker.SelectedIndex != -1)
+            {
+                mis_on_valitud.Text = $"Valisite: {picker.Items[picker.SelectedIndex]}";
+
+                if (picker.SelectedIndex == 0)
+                {
+                    DisplayAlert("Teade", "Meil on hea uudis!", "Selge");
+                }
+                else if (picker.SelectedIndex == 1)
+                {
+                    DisplayAlert("Küsimus", "Kas soovite jätkata?", "Jah", "Ei");
+                }
+                else if (picker.SelectedIndex == 2)
+                {
+                    var valik = new string[] { "Valik 1", "Valik 2", "Valik 3" };
+                    var tulemus = DisplayActionSheet("Palun vali", "Katkesta", null, valik);
+                }
+                else if (picker.SelectedIndex == 3)
+                {
+                    var tulemus = DisplayPromptAsync("Küsimus", "Sisesta oma vastus", "OK", "Katkesta", "Siia tuleb vastus", -1, Keyboard.Text, "Vastus");
+                }
+            }
         };
 
         slider = new Slider

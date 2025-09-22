@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 
-namespace _1projekt; // ВАЖНО: тот же namespace, что в x:Class
+namespace _1projekt; 
 
 public partial class Lumememm : ContentPage
 {
@@ -16,20 +16,22 @@ public partial class Lumememm : ContentPage
         UpdateOpacityLabel();
         UpdateSpeedLabel();
     }
-
+    // Показать/скрыть снеговика
     private void SetSnowmanVisible(bool visible) => Canvas.IsVisible = visible;
-
+    // Установить прозрачность всем частям
     private void SetSnowmanOpacity(double value)
     {
         Head.Opacity = value;
         Body.Opacity = value;
         Bucket.Opacity = value;
     }
-
+    // Обновить подпись у слайдера
     private void UpdateOpacityLabel() => OpacityValueLabel.Text = OpacitySlider.Value.ToString("0.00");
+    // Обновить подпись у степпера
     private void UpdateSpeedLabel() => SpeedLabel.Text = $"{(int)SpeedStepper.Value} ms";
+    // Текущее значение скорости
     private int SpeedMs => (int)SpeedStepper.Value;
-
+    // Остановить все анимации и вернуть в исходное состояние
     private void StopAnimations()
     {
         _cts?.Cancel();
@@ -38,15 +40,15 @@ public partial class Lumememm : ContentPage
         Head.Scale = Body.Scale = Bucket.Scale = 1.0;
         SetSnowmanOpacity(OpacitySlider.Value);
     }
-
+    // Событие слайдера
     private void OnOpacityChanged(object sender, ValueChangedEventArgs e)
     {
         SetSnowmanOpacity(e.NewValue);
         UpdateOpacityLabel();
     }
-
+    // Событие степпера
     private void OnSpeedChanged(object sender, ValueChangedEventArgs e) => UpdateSpeedLabel();
-
+    // Кнопка "Tee"
     private async void OnDoActionClicked(object sender, EventArgs e)
     {
         var action = ActionPicker.SelectedItem as string ?? "";
@@ -66,7 +68,7 @@ public partial class Lumememm : ContentPage
             case "Tantsi": await DanceAsync(); break;
         }
     }
-
+    // Сменить цвет ведра
     private async Task ChangeColorAsync()
     {
         bool ok = await DisplayAlert("Подтверждение", "Сменить цвет?", "Да", "Нет");
@@ -77,7 +79,7 @@ public partial class Lumememm : ContentPage
         await Bucket.ScaleTo(1.1, (uint)(SpeedMs / 2));
         await Bucket.ScaleTo(1.0, (uint)(SpeedMs / 2));
     }
-
+    // Растопить снеговика
     private async Task MeltAsync()
     {
         SetSnowmanVisible(true);
@@ -87,10 +89,11 @@ public partial class Lumememm : ContentPage
             Head.ScaleTo(0.7, d), Body.ScaleTo(0.7, d), Bucket.ScaleTo(0.7, d)
         );
         SetSnowmanVisible(false);
+        // вернуть в нормальное состояние
         Head.Opacity = Body.Opacity = Bucket.Opacity = OpacitySlider.Value;
         Head.Scale = Body.Scale = Bucket.Scale = 1.0;
     }
-
+    // Танец
     private async Task DanceAsync()
     {
         SetSnowmanVisible(true);

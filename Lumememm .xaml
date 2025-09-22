@@ -61,7 +61,6 @@
                    AbsoluteLayout.LayoutFlags="PositionProportional" />
         </AbsoluteLayout>
 
-       <!-- <Label Grid.Row="2" Text="💡 Slider меняет прозрачность, Stepper — скорость 'Sulata' и 'Tantsi'."
-               FontSize="12" TextColor="#666" />-->
+
     </Grid>
 </ContentPage>
