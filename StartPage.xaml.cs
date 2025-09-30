@@ -9,22 +9,28 @@ public partial class StartPage : ContentPage
 {
     public List<ContentPage> lehed = new List<ContentPage>()
     {
-        new TekstPage(),
-        new FigurePage(),
-        new TimerPage(),
+        // new TekstPage(),
+       // new FigurePage(),
+       // new TimerPage(),
         new ValgusfoorPage(),
-        new DateTimePage(),
-        new Lumememm()
+        // new DateTimePage(),
+        new Lumememm(),
+       // new GridPage(),
+        new TripsTrapsTrull(),
+        new PuslePage()
     };
 
     public List<string> tekstid = new List<string>()
     {
-        "Tee lahti leht Tekst'ga",
-        "Tee lahti Figure leht",
-        "Käivita timer page",
+       // "Tee lahti leht Tekst'ga",
+       // "Tee lahti Figure leht",
+       // "Käivita timer page",
         "Käivita valgusfoor page",
-        "Ava DateTime leht",
-        "Ava lumememm"
+       // "Ava DateTime leht",
+        "Ava lumememm",
+       // "Ava Grid leht",
+        "Ava TripsTrapsTrull",
+        "Ava Pusle leht"
     };
 
     ScrollView sv;

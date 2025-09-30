@@ -6,66 +6,66 @@ using Microsoft.Maui.Controls;
 namespace _1projekt; 
 
 public partial class Lumememm : ContentPage
-{
+{// Нужно, чтобы можно было остановить "танец"
     private CancellationTokenSource? _cts;
         
     public Lumememm()
     {
-        InitializeComponent();         // Появится, когда совпадёт полное имя класса
-        ActionPicker.SelectedIndex = 1; // "Näita"
-        UpdateOpacityLabel();
-        UpdateSpeedLabel();
+        InitializeComponent();          // Загружаем разметку со страницы
+        ActionPicker.SelectedIndex = 1; // По умолчанию выбрано "Показать"
+        UpdateOpacityLabel();           // Обновляем надпись прозрачности
+        UpdateSpeedLabel();             // Обновляем надпись скорости
     }
-    // Показать/скрыть снеговика
+    // Показать или спрятать снеговика
     private void SetSnowmanVisible(bool visible) => Canvas.IsVisible = visible;
-    // Установить прозрачность всем частям
+    // Сделать все части снеговика одинаково прозрачными
     private void SetSnowmanOpacity(double value)
     {
         Head.Opacity = value;
         Body.Opacity = value;
         Bucket.Opacity = value;
     }
-    // Обновить подпись у слайдера
+    // Поменять надпись рядом со слайдером прозрачности
     private void UpdateOpacityLabel() => OpacityValueLabel.Text = OpacitySlider.Value.ToString("0.00");
-    // Обновить подпись у степпера
+    // Поменять надпись рядом со степпером скорости
     private void UpdateSpeedLabel() => SpeedLabel.Text = $"{(int)SpeedStepper.Value} ms";
-    // Текущее значение скорости
+    // Значение скорости (в миллисекундах)
     private int SpeedMs => (int)SpeedStepper.Value;
-    // Остановить все анимации и вернуть в исходное состояние
+    // Остановить анимации и вернуть снеговика как был
     private void StopAnimations()
     {
-        _cts?.Cancel();
-        _cts = new CancellationTokenSource();
-        Head.TranslationX = Body.TranslationX = Bucket.TranslationX = 0;
-        Head.Scale = Body.Scale = Bucket.Scale = 1.0;
+        _cts?.Cancel();                       // Остановить старый танец
+        _cts = new CancellationTokenSource(); // Создать новый "стопер"
+        Head.TranslationX = Body.TranslationX = Bucket.TranslationX = 0; // Вернуть на место
+        Head.Scale = Body.Scale = Bucket.Scale = 1.0;                    // Вернуть обычный размер
         SetSnowmanOpacity(OpacitySlider.Value);
     }
-    // Событие слайдера
+    // Когда двигаем слайдер прозрачности
     private void OnOpacityChanged(object sender, ValueChangedEventArgs e)
     {
         SetSnowmanOpacity(e.NewValue);
         UpdateOpacityLabel();
     }
-    // Событие степпера
+    // Когда меняем скорость
     private void OnSpeedChanged(object sender, ValueChangedEventArgs e) => UpdateSpeedLabel();
-    // Кнопка "Tee"
+    // Когда нажимаем кнопку "Сделать"
     private async void OnDoActionClicked(object sender, EventArgs e)
     {
-        var action = ActionPicker.SelectedItem as string ?? "";
-        InfoLabel.Text = $"Tegevus: {action}";
-        StopAnimations();
+        var action = ActionPicker.SelectedItem as string ?? ""; // Что выбрано
+        InfoLabel.Text = $"Tegevus: {action}";                  // Показать действие
+        StopAnimations();                                       // Сначала всё остановить
 
         switch (action)
         {
-            case "Peida": SetSnowmanVisible(false); break;
-            case "Näita":
+            case "Peida": SetSnowmanVisible(false); break;      // Спрятать
+            case "Näita":                                     // Показать плавно
                 SetSnowmanVisible(true);
                 Canvas.Opacity = 0;
                 await Canvas.FadeTo(1, (uint)SpeedMs);
                 break;
-            case "Muuda värvi": await ChangeColorAsync(); break;
-            case "Sulata": await MeltAsync(); break;
-            case "Tantsi": await DanceAsync(); break;
+            case "Muuda värvi": await ChangeColorAsync(); break; // Сменить цвет ведра
+            case "Sulata": await MeltAsync(); break;             // Растопить
+            case "Tantsi": await DanceAsync(); break;            // Танцевать
         }
     }
     // Сменить цвет ведра
@@ -75,9 +75,9 @@ public partial class Lumememm : ContentPage
         if (!ok) return;
         var rnd = new Random();
         Color RandomColor() => Color.FromRgb(rnd.Next(20, 236), rnd.Next(20, 236), rnd.Next(20, 236));
-        Bucket.BackgroundColor = RandomColor();
-        await Bucket.ScaleTo(1.1, (uint)(SpeedMs / 2));
-        await Bucket.ScaleTo(1.0, (uint)(SpeedMs / 2));
+        Bucket.BackgroundColor = RandomColor();         // Присвоить цвет
+        await Bucket.ScaleTo(1.1, (uint)(SpeedMs / 2)); // Увеличить немного
+        await Bucket.ScaleTo(1.0, (uint)(SpeedMs / 2)); // Вернуть назад
     }
     // Растопить снеговика
     private async Task MeltAsync()

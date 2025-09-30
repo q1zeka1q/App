@@ -19,7 +19,7 @@
                    FontSize="24"
                    HorizontalOptions="Center" />
 
-                <!-- Valgusfoori tuled (ainult üks on korraga sisse) -->
+                <!-- Valgusfoori tuled  -->
                 <Frame x:Name="RedLight"
                    WidthRequest="100" HeightRequest="100"
                    CornerRadius="50"
