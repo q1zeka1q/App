@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!-- Разметка страницы (что видно на экране) -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApptargv.TripsTrapsTrull"
-             Title="TripsTrapsTrull">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Trips-Traps-Trull">
+
+    <!-- Всё расположено вертикально -->
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <!-- Надпись: чей ход -->
+        <Label x:Name="TurnLabel"
+               Text="Ход: X"
+               FontSize="24"
+               HorizontalOptions="Center" />
+
+        <!-- Игровое поле 3x3 -->
+        <Grid x:Name="Board"
+              RowDefinitions="*,*,*"
+              ColumnDefinitions="*,*,*"
+              HeightRequest="300"
+              WidthRequest="300"
+              HorizontalOptions="Center">
+
+            <!-- 9 КНОПОК.  -->
+            <Button x:Name="B00" Grid.Row="0" Grid.Column="0" Clicked="OnCellClicked"/>
+            <Button x:Name="B01" Grid.Row="0" Grid.Column="1" Clicked="OnCellClicked"/>
+            <Button x:Name="B02" Grid.Row="0" Grid.Column="2" Clicked="OnCellClicked"/>
+
+            <Button x:Name="B10" Grid.Row="1" Grid.Column="0" Clicked="OnCellClicked"/>
+            <Button x:Name="B11" Grid.Row="1" Grid.Column="1" Clicked="OnCellClicked"/>
+            <Button x:Name="B12" Grid.Row="1" Grid.Column="2" Clicked="OnCellClicked"/>
+
+            <Button x:Name="B20" Grid.Row="2" Grid.Column="0" Clicked="OnCellClicked"/>
+            <Button x:Name="B21" Grid.Row="2" Grid.Column="1" Clicked="OnCellClicked"/>
+            <Button x:Name="B22" Grid.Row="2" Grid.Column="2" Clicked="OnCellClicked"/>
+        </Grid>
+
+        <!-- Кнопка очистки поля -->
+        <Button Text="Новая игра" Clicked="OnNewGameClicked" />
+
     </VerticalStackLayout>
 </ContentPage>
